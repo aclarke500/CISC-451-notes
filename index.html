@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Notes on pages 26 to 50 -->
+    <h3>Data Platform Challenges in Big Data</h3>
+    <p>Big data platforms face several challenges that impact users, primarily regarding:</p>
+    <ul>
+        <li><strong>Access:</strong> Can users get the data they need?</li>
+        <li><strong>Reliability:</strong> Is the data accurate and up-to-date?</li>
+        <li><strong>Timeliness:</strong> Is the data fresh enough for analysis?</li>
+    </ul>
+
+    <h3>Relational Database Systems</h3>
+    <p>Relational databases organize data logically in tables and use SQL for data manipulation. SQL is a declarative
+        language, meaning users specify what they want rather than how to get it. This simplifies the user experience
+        but shifts the optimization burden to the system.</p>
+
+    <h3>Out-of-core Computation</h3>
+    <p>Database systems are designed to operate on datasets larger than the system’s main memory, making memory and disk
+        management crucial. Page-level memory buffers and efficient reads/writes to disk help manage these large
+        datasets.</p>
+
+    <h3>OLTP vs. OLAP Systems</h3>
+    <ul>
+        <li><strong>OLTP (Online Transaction Processing):</strong> These systems are designed for low-latency,
+            high-availability environments like banking and user profiles, where transactional consistency is crucial.
+        </li>
+        <li><strong>OLAP (Online Analytics Processing):</strong> These systems manage large-scale analytics tasks,
+            including business intelligence and fraud detection, focusing on scalability and rich computational support.
+        </li>
+    </ul>
+
+    <h3>Data Warehousing and ETL</h3>
+    <p>Data warehouses collect and organize historical data from multiple sources, typically via the Extract, Transform,
+        Load (ETL) process:</p>
+    <ul>
+        <li><strong>Extract:</strong> Data is pulled from remote sources.</li>
+        <li><strong>Transform:</strong> Data is cleaned and converted into standard schemas, though this is often the
+            most complex step.</li>
+        <li><strong>Load:</strong> Transformed data is loaded into the warehouse for use in analytics.</li>
+    </ul>
+    <p>Recent trends suggest moving toward ELT (Extract, Load, Transform) due to improvements in data warehouse
+        performance.</p>
+
+    <h3>Data Lakes</h3>
+    <p>Data lakes store data in its raw form, enabling users to define schemas only when needed (schema on read).
+        However, this approach has its downsides, such as poor data governance, dirty data, and the complexity of new
+        tools.</p>
+
+    <h3>A Brighter Future for Data Lakes</h3>
+    <p>As technologies evolve, we are seeing the convergence of data lakes and warehouses, creating a "Lakehouse" model.
+        New tools are enabling SQL queries on large files, better data governance, and self-describing file formats like
+        Parquet and ORC.</p>
+    <!-- Notes on pages 51 to 75 -->
+    <h3>Handling Large Unstructured Datasets</h3>
+    <p>Large unstructured datasets require solutions that can span multiple machines and handle common failures. Key
+        techniques include:</p>
+    <ul>
+        <li><strong>Distributed file systems:</strong> Spread data across multiple machines, with redundancy to account
+            for machine failure.</li>
+        <li><strong>Distributed computing:</strong> Load and process files concurrently across multiple machines using
+            functional programming principles like parallelism.</li>
+    </ul>
+
+    <h3>MapReduce Framework</h3>
+    <p>MapReduce is a programming model used for processing large-scale data across distributed systems. It consists of
+        two main functions:</p>
+    <ul>
+        <li><strong>Map:</strong> Processes and emits key-value pairs from the input data.</li>
+        <li><strong>Reduce:</strong> Aggregates and combines values based on the key.</li>
+    </ul>
+    <p>Key properties of MapReduce include:</p>
+    <ul>
+        <li><strong>Deterministic Map:</strong> Enables re-execution in case of failures.</li>
+        <li><strong>Commutative and Associative Reduce:</strong> Ensures that operations can be reordered and regrouped
+            for parallel execution.</li>
+    </ul>
+
+    <h3>Distributed k-Nearest Neighbor (k-NN)</h3>
+    <p>In distributed k-NN, data is split across machines, and the Map function calculates distances between the query
+        point and data points in each machine. The Reduce function then selects the class of the nearest neighbor from
+        the mapper results.</p>
+
+    <h3>Logistic Regression using MapReduce</h3>
+    <p>Logistic regression with gradient descent can be implemented using MapReduce. However, this framework is not
+        optimized for iterative and multi-stage computations. The process includes reading the same data repeatedly
+        during each iteration, which can be costly.</p>
+
+    <h3>Iteration in MapReduce</h3>
+    <p>While MapReduce can support iterative computations, the need to load the same data multiple times introduces
+        inefficiencies. A potential improvement is to use in-memory dataflow systems, like Spark, which optimize
+        multi-stage computations by caching data between stages.</p>
+
+    <h3>In-Memory Dataflow Systems</h3>
+    <p>Systems like Spark optimize data processing by keeping data in memory, resulting in significantly faster
+        computations compared to traditional disk-based systems. These in-memory systems can be 10-100 times faster than
+        traditional network and disk operations.</p>
+
+
+    <!-- Notes on pages 51 to 75 -->
+    <h2>⚡ Mastering the Art of Handling Massive Unstructured Datasets ⚡</h2>
+    <p>Large unstructured datasets present a formidable challenge, requiring solutions that distribute data across
+        multiple machines and account for inevitable failures. Here are the key components:</p>
+    <ul>
+        <li><strong>Distributed File Systems:</strong> These systems spread data across multiple machines with
+            redundancy, ensuring that even if a machine fails, data is still accessible.</li>
+        <li><strong>Distributed Computing:</strong> This enables parallel processing of files across several machines,
+            enhancing speed and fault tolerance.</li>
+    </ul>
+
+    <h2>🚀 Enter the World of MapReduce: Revolutionizing Distributed Computing 🚀</h2>
+    <p>MapReduce is the powerhouse behind distributed data processing, splitting workloads into manageable pieces and
+        ensuring efficient processing:</p>
+    <ul>
+        <li><strong>Map:</strong> Breaks down input data into key-value pairs for processing.</li>
+        <li><strong>Reduce:</strong> Aggregates the data by key, combining and summarizing results.</li>
+    </ul>
+    <p>MapReduce is designed with several built-in advantages:</p>
+    <ul>
+        <li><strong>Deterministic Map:</strong> Allows computations to be re-executed on failure without losing data.
+        </li>
+        <li><strong>Commutative and Associative Reduce:</strong> Supports reordering and regrouping of operations,
+            ensuring flexibility and speed.</li>
+    </ul>
+
+    <h2>🧠 Distributed k-Nearest Neighbor (k-NN): Scaling Predictive Power 🧠</h2>
+    <p>With large datasets, k-NN must be distributed across many machines. The map function calculates distances between
+        the scoring record and training data, while the reduce function determines the nearest neighbors, bringing
+        powerful predictive analytics into distributed environments.</p>
+
+    <h2>🔍 Logistic Regression in MapReduce: Pushing the Limits of Parallel Learning 🔍</h2>
+    <p>Logistic regression can be executed in a distributed setting using gradient descent with MapReduce. However, it
+        comes with challenges, especially in iterative computations, as MapReduce is not inherently optimized for tasks
+        requiring multiple stages.</p>
+
+    <h2>⏳ The Cost of Iteration in MapReduce: Tackling the Bottlenecks ⏳</h2>
+    <p>While MapReduce supports iterative learning, each iteration requires loading the same data repeatedly, making it
+        inefficient for multi-stage tasks. As a solution, in-memory dataflow systems are emerging to minimize these
+        delays.</p>
+
+    <h2>🔥 In-Memory Dataflow Systems: The Spark of Speed in Distributed Computing 🔥</h2>
+    <p>Systems like Spark drastically reduce the overhead associated with data reloading by keeping data in memory.
+        These systems are significantly faster, offering a game-changing improvement, with speeds up to 100 times faster
+        than traditional disk-based methods.</p>
+
+
+
+<!-- Notes on pages 76 to 100 -->
+
+<h2>⚡ Memory Optimized Dataflow: Efficiency in Action ⚡</h2>
+<p>Memory optimization is crucial for improving the speed of data movement across stages. Efficiently transferring data between Map and Reduce phases is key to boosting performance, particularly when dealing with massive datasets.</p>
+
+<h2>⚔️ Spark vs. Hadoop MapReduce: A Battle for Big Data Dominance ⚔️</h2>
+<p>When speed and iterative processing are critical, Spark outperforms Hadoop. Here's why:</p>
+<ul>
+    <li><strong>In-Memory Processing:</strong> Spark processes data in memory, offering near real-time performance, while Hadoop relies on disk-based I/O.</li>
+    <li><strong>Iterative Operations:</strong> Spark's Resilient Distributed Datasets (RDDs) allow iterative processing without disk writes, making it more suitable for tasks like K-Mean Clustering or K-Nearest Neighbor (KNN).</li>
+</ul>
+
+<h2>💡 RDDs: The Backbone of Spark's Power 💡</h2>
+<p>Resilient Distributed Datasets (RDDs) are split across multiple partitions and distributed across nodes in a cluster. This architecture allows for efficient parallel computation and fault tolerance in Spark.</p>
+
+<h2>🏛️ The Modern Big Data Software Stack: From Hadoop to Lakehouse 🏛️</h2>
+<p>The evolution of data architecture has moved from data warehouses in the 1980s to data lakes in the 2010s, and now to the <strong>Lakehouse</strong>—a hybrid architecture that combines the best features of both.</p>
+<ul>
+    <li><strong>Data Warehouses:</strong> Structured and semi-structured data, but costly and lacking support for modern analytics like machine learning.</li>
+    <li><strong>Data Lakes:</strong> Inexpensive storage for unstructured data, but unreliable for data governance and consistency.</li>
+</ul>
+
+<h2>🌊 The Lakehouse: Bridging the Gap Between Data Warehouses and Data Lakes 🌊</h2>
+<p>The Lakehouse combines the management features of data warehouses with the flexibility of data lakes, offering direct access to raw data in open formats with added features like transactions and indexing.</p>
+
+<h2>🚀 Key Technologies Behind the Lakehouse 🚀</h2>
+<ul>
+    <li><strong>Metadata Layers:</strong> Enable features like transactions, versioning, and indexing on top of data lakes.</li>
+    <li><strong>Lakehouse Engines:</strong> Support performant SQL queries directly on data lake storage.</li>
+    <li><strong>Declarative I/O Interfaces:</strong> Provide seamless integration with data science and machine learning tools.</li>
+</ul>
+
+<h2>📊 Optimizations in Lakehouse: Pushing Performance Boundaries 📊</h2>
+<p>To match the performance of data warehouses, Lakehouses employ several optimizations:</p>
+<ul>
+    <li><strong>Auxiliary Data Structures:</strong> Zone maps for faster querying.</li>
+    <li><strong>Data Layout:</strong> Optimized sorting (e.g., Z-order) for clustering data.</li>
+    <li><strong>Caching:</strong> Hot data caching in SSD or RAM for faster access.</li>
+    <li><strong>Vectorized Execution:</strong> New engines, such as Databricks Photon, use vectorization to speed up processing.</li>
+</ul>
+
+<h2>⚠️ Challenges in Lakehouse Performance ⚠️</h2>
+<p>Lakehouses face challenges in maintaining performance, especially with unstructured data and string processing. Adaptive query execution and the ability to handle large data fields are crucial for maintaining efficiency.</p>
+
+<h2>🤖 Machine Learning Over Data Warehouses: The Pain Points 🤖</h2>
+<p>While SQL workloads are well-suited for data warehouses, machine learning workloads are a different beast. Exporting data to lakes adds more ETL steps, increasing complexity and data staleness.</p>
+
+
+
+
+
+
+
+
+<!-- Notes on pages 75 to 100 -->
+
+<h2>Machine Learning Over a Lakehouse</h2>
+<p>Lakehouse architectures allow for direct access to data files without overloading the SQL frontend. Machine learning frameworks, such as Spark DataFrames, support reading data in formats like Parquet, enabling seamless integration of machine learning workflows.</p>
+<p>Declarative APIs such as Spark DataFrames help optimize queries by using lazy evaluation, which builds an execution plan that is only computed when results are needed.</p>
+
+<h2>Integrated Machine Learning with Data Platforms</h2>
+<p>Modern platforms like Databricks Machine Learning offer tighter integration between data and machine learning pipelines. Some of the key features include:</p>
+<ul>
+    <li>ML model metrics are tracked as tables through tools like MLflow Tracking.</li>
+    <li>Feature stores use Delta for storage and Spark Streaming for real-time data pipelines.</li>
+    <li>Models can be embedded into SQL or ETL jobs, simplifying the workflow.</li>
+</ul>
+
+<h2>Summary of Lakehouse Systems</h2>
+<p>Lakehouse systems combine the strengths of data warehouses and data lakes, offering the following advantages:</p>
+<ul>
+    <li>Open interfaces allow direct access to data from various tools, improving flexibility.</li>
+    <li>Management features like metadata handling, transactions, and versioning ensure data consistency.</li>
+    <li>New query engines provide high-performance access to data, while storage costs remain low due to cloud-based solutions.</li>
+</ul>
+
+<h2>Delta Live Tables: Declarative Data Pipelines</h2>
+<p>Delta Live Tables extend the power of declarative SQL beyond single queries, incorporating them into larger data pipelines. This approach provides a data model for pipelines, allowing features like cross-task analysis, testing, rollback, and built-in checks.</p>
+
+<h2>Unity Catalog: Centralized Governance for Data and Machine Learning</h2>
+<p>Data governance needs are evolving, particularly as organizations manage both structured and unstructured data. Unity Catalog offers a centralized system for managing access controls across data and machine learning assets. It also provides lineage tracking for data usage and simplifies compliance with access control policies.</p>
+
+<h2>Introduction to Big Data Analytics Workflow</h2>
+<p>The second part of the course delves into big data analytics, focusing on the workflows, pipelines, and code used to manage large-scale data systems.</p>
+
+<h2>Recap: The Modern Big Data Software Stack</h2>
+<p>The modern big data stack includes distributed systems like Hadoop and Spark, which provide frameworks for managing and processing large datasets. These systems emphasize fault tolerance, scalability, and parallelism.</p>
+
+<h2>Recap: Machine Learning Workflow</h2>
+<p>Machine learning workflows differ from traditional software engineering processes. While traditional software aims to meet a functional specification, machine learning is designed to optimize metrics like accuracy. The quality of machine learning models depends heavily on input data and hyperparameter tuning, and typically requires constant experimentation to improve results.</p>
+
+<h2>Challenges in Production Machine Learning</h2>
+<p>Deploying machine learning models in production adds complexity, as models must be regularly updated with new data. Different teams, such as data engineers, machine learning engineers, and application developers, often handle various stages of the model lifecycle, from data preparation to deployment and maintenance.</p>
+
+<h2>Machine Learning Platforms</h2>
+<p>Machine learning platforms, such as Uber's Michelangelo, Google TFX, and Facebook FBLearner, help manage the lifecycle of machine learning models. These platforms provide support for tasks such as data preparation, model training, versioning, CI/CD, quality assurance, monitoring, and deployment.</p>
+
+<h2>MLflow: An Open-Source Machine Learning Platform</h2>
+<p>MLflow is an open-source platform designed to manage the end-to-end machine learning lifecycle. It works with any machine learning library or programming language and supports various deployment tools. Its core components include:</p>
+<ul>
+    <li><strong>Tracking:</strong> Logs experiments, parameters, and metrics.</li>
+    <li><strong>Projects:</strong> Facilitates reproducible runs of machine learning experiments.</li>
+    <li><strong>Model Registry:</strong> Manages models by versioning them and adding metadata such as comments and tags.</li>
+</ul>
+
+<h2>Tracking Machine Learning Experiments</h2>
+<p>MLflow allows users to log experiment parameters, metrics, and model outputs through its tracking server. This information can be inspected using MLflow's user interface, which provides detailed reports on experiment runs and their results.</p>
+
+<h2>MLflow Projects and Models</h2>
+<p>MLflow Projects ensure that experiments are reproducible, packaging the code, data, and configuration needed to run the experiment. MLflow Models allow for easy packaging and deployment of machine learning models, supporting multiple formats such as Python and ONNX for batch and stream scoring.</p>
+
+<h2>Model Management and Versioning</h2>
+<p>Managing multiple versions of machine learning models can be challenging in large organizations. MLflow's Model Registry addresses this issue by providing a repository of named, versioned models, where each version is tracked through stages such as development, staging, and production. This allows teams to find and review models more efficiently.</p>
+
+
+
+
+
+
+
+<!-- Notes on pages 126 to 150 -->
+
+<h2>Paper Discussion: Quality and Reproducibility of Notebooks</h2>
+<p>This section discusses the quality and reproducibility of Jupyter Notebooks, highlighting the need for better practices and tools to ensure more reliable outputs in research and industry use. Reproducibility, a key issue, refers to the ability to repeat results using the same computational environment.</p>
+
+<h2>Questions to Answer in Paper Review</h2>
+<p>Key questions to address during the review of the paper:</p>
+<ul>
+    <li><strong>Descriptive:</strong> What is the problem being investigated? Why is it important?</li>
+    <li><strong>Contributions:</strong> What are the main findings or takeaways from the paper?</li>
+    <li><strong>Critique (Pros):</strong> What aspects of the paper were particularly strong or informative?</li>
+    <li><strong>Critique (Cons):</strong> What concerns or weaknesses are present in the methodology or conclusions?</li>
+    <li><strong>Impact & Future Directions:</strong> How has the research shaped the field? What new challenges or opportunities have emerged?</li>
+</ul>
+
+<h2>Reproducibility Issues in Jupyter Notebooks</h2>
+<p>The study examines 1.4 million notebooks from GitHub to identify common practices and issues that affect reproducibility. Notebooks are increasingly popular for machine learning prototyping but present several challenges, such as out-of-order cell execution, hidden states, and non-reproducible results.</p>
+
+<h2>Research Questions Addressed</h2>
+<p>The authors explore several research questions (RQs) to understand how notebooks are used:</p>
+<ul>
+    <li><strong>RQ1:</strong> How do notebooks use literate programming features?</li>
+    <li><strong>RQ2:</strong> How are notebooks named and organized?</li>
+    <li><strong>RQ6:</strong> How are notebooks executed, and what issues affect execution order?</li>
+    <li><strong>RQ7:</strong> How reproducible are notebooks?</li>
+</ul>
+
+<h2>Findings on Reproducibility</h2>
+<p>Among the findings, the study reveals that only 22.57% to 26.09% of notebooks could be successfully executed. When considering notebooks that produced the same results upon re-execution, the success rate drops to 4.90% to 15.04%. Key factors causing failures include missing dependencies, hidden states, out-of-order execution, and incompatible software versions.</p>
+
+<h2>Julynter: A Linting Tool for Jupyter Notebooks</h2>
+<p>The authors propose <strong>Julynter</strong>, a linting tool that automatically identifies and addresses 21 types of issues in Jupyter Notebooks, such as undefined variable names, invalid titles, and hidden state problems.</p>
+
+<h2>Contributions of the Paper</h2>
+<ul>
+    <li>Analysis of common good and bad practices in Jupyter Notebook development, focusing on reproducibility and quality issues.</li>
+    <li>Proposes a detailed study measuring the reproducibility rates of notebooks under different settings.</li>
+    <li>Introduces Julynter, a tool aimed at improving reproducibility in notebooks.</li>
+</ul>
+
+<h2>Critique: Strengths and Weaknesses</h2>
+<ul>
+    <li><strong>Pros:</strong> The paper provides a clear focus on reproducibility issues, and the proposed tool (Julynter) is well-evaluated.</li>
+    <li><strong>Cons:</strong> There may be biases in defining what constitutes "good" practices, and the tool might be overdesigned without addressing real user pain points.</li>
+</ul>
+
+<h2>Future Directions</h2>
+<p>Key future research areas include:</p>
+<ul>
+    <li>Understanding how notebook quality and reproducibility evolve over time.</li>
+    <li>Exploring the pain points of notebook users to develop more effective tools.</li>
+    <li>Improving automated tools for correcting, organizing, and documenting notebooks.</li>
+</ul>
+
+<h2>Next Topic: Domain-Specific Data Analytics</h2>
+<p>This section introduces the next topic in the course, focusing on domain-specific challenges in data analytics across three key areas:</p>
+<ul>
+    <li><strong>Domain I:</strong> Business (User Engagement, LLM for Recommendations).</li>
+    <li><strong>Domain II:</strong> Software Engineering (Mining Software Repositories).</li>
+    <li><strong>Domain III:</strong> Healthcare (Clinical Data Mining).</li>
+</ul>
+<p>The goal is to understand the unique challenges and tailor solutions for each domain's specific problems.</p>
+
+<!-- Notes on pages 151 to 175 -->
+
+<h2>User Engagement: Definitions and Concepts</h2>
+<p>User engagement is a persistent and pervasive cognitive affective state, not just time-specific. It reflects the quality of the user experience and the desire to continue interacting with a technology. Engagement is influenced by factors such as positive user experiences, aesthetics, and novelty.</p>
+<p>Key Definitions:</p>
+<ul>
+    <li>User engagement refers to the quality of the user experience and the desire to use technology. [Schaufeli et al., 2002]</li>
+    <li>User engagement is associated with the positive aspects of interaction and the desire to continue using a technology. [Attfield et al., 2011]</li>
+</ul>
+
+<h2>Why Analyze User Engagement? E-Commerce Applications</h2>
+<p>User engagement is crucial in e-commerce, where the goal is to help users find and purchase products they may not have initially intended to buy. This analysis helps businesses tailor their services to enhance user satisfaction and increase conversion rates.</p>
+
+<h2>Search and User Engagement</h2>
+<p>Search engines play a key role in user engagement by helping users find relevant information quickly. Key metrics for search engine performance include coverage, speed, user interface, and relevance. User satisfaction is measured by their willingness to return for future searches. In the context of engagement, search is a means to an end.</p>
+
+<h2>Engagement in News and Streaming Services</h2>
+<p>In news and streaming services, engagement is driven by personalized content that meets user preferences. Services like Spotify aim to enhance engagement by offering customized recommendations that align with user interests and consumption habits.</p>
+
+<h2>Advertising and User Engagement</h2>
+<p>Native advertising, which blends in with the surrounding content, has been shown to increase user attention and brand recognition. Characteristics such as visual engagement and the potential for social sharing make native ads particularly effective at driving engagement.</p>
+
+<h2>Characteristics of User Engagement</h2>
+<p>User engagement is multifaceted, involving several key elements:</p>
+<ul>
+    <li><strong>Focused Attention:</strong> The user’s ability to maintain attention is critical to engagement. Time spent on the platform can serve as a proxy for focused attention.</li>
+    <li><strong>Aesthetics:</strong> The visual appeal of a technology influences the user’s experience. Well-designed interfaces promote engagement.</li>
+    <li><strong>Novelty:</strong> Surprising or novel features can increase engagement by stimulating curiosity and encouraging exploration.</li>
+    <li><strong>Reputation and Trust:</strong> Users are more likely to engage with technology they trust. Trust forms the basis of repeated use and positive user experiences.</li>
+    <li><strong>Positive Affect:</strong> Emotions experienced during interaction, such as enjoyment, play a significant role in sustaining engagement.</li>
+    <li><strong>Endurability:</strong> Users tend to remember enjoyable experiences and are motivated to repeat them.</li>
+    <li><strong>Richness and Control:</strong> Richness refers to the growth potential of an activity, while control relates to how users achieve that growth, often through interactivity and utility.</li>
+</ul>
+
+<h2>The Engagement Life Cycle</h2>
+<p>Engagement occurs in phases, each representing a different aspect of the user’s interaction:</p>
+<ul>
+    <li><strong>Point of Engagement:</strong> The initial phase where the user’s interest is captured, often through aesthetics and novelty that align with their preferences.</li>
+    <li><strong>Period of Engagement:</strong> The main phase where the user maintains attention and interest. This is typically the focus of user engagement studies.</li>
+    <li><strong>Disengagement:</strong> A phase where the user begins to lose interest, which can lead to passive or reduced use.</li>
+    <li><strong>Re-engagement:</strong> After disengagement, users may be drawn back through strategies such as reminders, new features, or personalized campaigns.</li>
+</ul>
+
+
+
+
+
+
+<!-- Notes on pages 176 to 200 -->
+
+<h2>User Engagement Life Cycle</h2>
+<p>The engagement life cycle describes how users interact with a product over time, from their initial activation to potential disengagement and re-engagement. Key phases include:</p>
+<ul>
+    <li><strong>Point of Engagement:</strong> Users arrive, and their interest is captured. This can involve acquisition strategies such as marketing or offers.</li>
+    <li><strong>Active Users:</strong> Users are engaged and actively interacting with the product.</li>
+    <li><strong>Disengagement:</strong> Users lose interest or reduce their activity, leading to dormancy or churn.</li>
+    <li><strong>Re-engagement:</strong> Efforts such as notifications, emails, or offers are made to re-engage dormant users.</li>
+</ul>
+
+<h2>Endurability in the Engagement Life Cycle</h2>
+<p>Endurability refers to the user's behavior during and across sessions, representing how long users remain engaged with the product. This metric is essential for understanding long-term user retention and satisfaction.</p>
+
+<h2>Measuring User Engagement: Considerations</h2>
+<p>Measuring user engagement requires balancing several factors:</p>
+<ul>
+    <li><strong>Short-term vs. Long-term:</strong> Engagement can be evaluated based on short, immediate interactions or long-term behavior.</li>
+    <li><strong>Laboratory vs. "In the Wild":</strong> Engagement can be studied in controlled environments or in real-world settings.</li>
+    <li><strong>Qualitative vs. Quantitative:</strong> Data can be gathered through subjective (self-reports) or objective (behavioral) measures.</li>
+    <li><strong>Large-scale vs. Small-scale:</strong> Engagement can be measured for large populations or smaller, focused groups.</li>
+</ul>
+
+<h2>Methods to Measure User Engagement</h2>
+<p>There are several methods to measure engagement, each providing different insights:</p>
+<ul>
+    <li><strong>Self-reported Methods:</strong> Include surveys, interviews, and questionnaires, often producing qualitative data.</li>
+    <li><strong>Physiological Measurements:</strong> Capture objective data such as heart rate or eye movement to assess engagement.</li>
+    <li><strong>Online Analytics:</strong> Analyze user behavior through metrics such as clicks, session times, and bounce rates.</li>
+</ul>
+
+<h2>Engagement Metrics: Short-term vs. Long-term</h2>
+<p>Engagement metrics can be broken down into two categories:</p>
+<ul>
+    <li><strong>Intra-session Metrics:</strong> Measure user activity within a single session, such as dwell time, page views, and click-through rates.</li>
+    <li><strong>Inter-session Metrics:</strong> Measure engagement across multiple sessions, assessing long-term habits and loyalty. Metrics include session frequency, total usage time, and active days.</li>
+</ul>
+
+<h2>Three Levels of Engagement</h2>
+<p>User engagement is often evaluated across three levels:</p>
+<ul>
+    <li><strong>Involvement:</strong> The user's presence or attention, measured by page views, dwell time, and revisit rates.</li>
+    <li><strong>Interaction:</strong> The user's actions, including clicks, shares, likes, and conversion rates.</li>
+    <li><strong>Contribution:</strong> The user's input, such as posting comments, creating content, or updating playlists.</li>
+</ul>
+
+<h2>Measuring Click-through Rates (CTR)</h2>
+<p>Click-through rates (CTR) measure the ratio of users who click on a specific link to the total number of users who view that link. In the context of engagement, CTR is an important metric for understanding user interaction, particularly in advertising, search, and music services.</p>
+
+<h2>No-Click Search Behavior</h2>
+<p>In search engines, "no-click" behavior occurs when users find the information they need directly on the search result page, without clicking any results. This can indicate either good abandonment (user finds the answer) or bad abandonment (user is dissatisfied). Research has examined cursor movements to differentiate between these scenarios.</p>
+
+<h2>Downstream Engagement in Music</h2>
+<p>Downstream engagement refers to the actions users take after clicking on an item, such as a track or artist page. Metrics include the total number of tracks played, visits to album or artist pages, and time spent on those pages. These interactions help build long-term user relationships with content.</p>
+
+<h2>Dwell Time: A Measure of Involvement</h2>
+<p>Dwell time is the contiguous time a user spends on a site or page. It is commonly used as a proxy for user interest and can be applied across various platforms, including websites, video streaming, and music streaming services. However, interpreting dwell time can be complicated by factors such as open tabs and multi-tasking behavior.</p>
+
+<!-- Notes on pages 201 to 225 -->
+
+<h2>Dwell Time: A Proxy for User Engagement</h2>
+<p>Dwell time, the time users spend on a site or content, is widely used as a proxy for user interest. Cursor heatmaps can show patterns of interaction, such as reading versus scanning behavior, providing insights into user engagement. Research has shown that optimizing for dwell time can improve user engagement across various platforms, including news, music, and advertising.</p>
+
+<h2>Dwell Time in News and Streaming Services</h2>
+<p>In the context of news, dwell time has proven to be a better proxy for user interest compared to simple click-through rates. Optimizing for dwell time has been shown to increase click-through rates while reducing reliance on clickbait tactics.</p>
+<p>In music streaming, dwell time (equivalent to streaming time) can be optimized to increase user consumption. For example, Spotify's sleep playlists have higher consumption times, and increasing mean consumption time led to a significant boost in predicted stream rates.</p>
+
+<h2>Dwell Time and Ad Landing Page Quality</h2>
+<p>In advertising, dwell time on an ad's landing page is used to measure the quality of the user experience. A longer dwell time after an ad click is associated with a positive post-click experience, which can increase the likelihood of users clicking on ads again.</p>
+
+<h2>Intra-session Metrics: Measuring Engagement Within Sessions</h2>
+<p>Intra-session metrics measure user behavior within a single session, such as dwell time, click-through rate (CTR), revisit rates, page views, and conversion rates. These metrics can be used to assess involvement, interaction, and contribution, depending on the expected type of engagement for a site.</p>
+
+<h2>Challenges with Intra-session Metrics</h2>
+<p>Intra-session metrics, while useful, can sometimes provide misleading results. For example, A/B testing may produce erroneous outcomes if only intra-session metrics are used, particularly for short sessions or poorly performing ranking functions in search engines.</p>
+
+<h2>Inter-session Metrics: Long-term Engagement and Loyalty</h2>
+<p>Inter-session metrics measure user engagement across multiple sessions, providing insights into long-term user loyalty. Key metrics include the total number of sessions, days active, clicks, and total time spent on the site. These metrics are important for assessing business performance and key performance indicators (KPIs).</p>
+
+<h2>Absence Time: A Measure of Loyalty</h2>
+<p>Absence time, the time between sessions, can be used to evaluate user loyalty and the effectiveness of ranking functions in search engines. Shorter absence times indicate a higher likelihood of users returning to the site, while longer absence times suggest disengagement.</p>
+
+<h2>Examples of Search Metrics</h2>
+<p>Several metrics are used to assess search relevance and engagement, including the number of clicks, SAT clicks (satisfaction clicks), quick-back clicks, abandonment rates, and query reformulations. Dwell time on specific search results versus the entire results page is also an important metric.</p>
+
+<h2>Absence Time and Search Experience</h2>
+<p>Studies have demonstrated that absence time is a useful metric for evaluating search effectiveness. Positive search experiences, such as quick SAT clicks and query reformulations, are associated with shorter absence times, while negative experiences, such as abandoned sessions, lead to longer absence times.</p>
+
+<h2>Optimizing Engagement: Manual and Automatic Approaches</h2>
+<p>User engagement can be optimized through manual, semi-manual, and automatic methods. Manual methods include hypothesis-driven experimentation, while automatic methods use techniques like online learning, multi-armed bandits, and reinforcement learning. Combining both approaches can yield more effective results.</p>
+
+<h2>User Engagement Forecasting in Social Platforms</h2>
+<p>In platforms like LinkedIn, engagement can be predicted at both the session level and the day level. Models like DIGMN (Dynamic Intent Guided Meta Network) are used to forecast user engagement based on historical data, distinguishing between users with different behavioral patterns.</p>
+
+<h2>Mining User Intents</h2>
+<p>User intents can be mined using techniques like Latent Dirichlet Allocation (LDA) to analyze session data. Intent mining helps in identifying optimal user behaviors, which can then be used to refine engagement forecasting models.</p>
+
+<h2>Recommender Systems in the LLM Era</h2>
+<p>The course introduces recommender systems, which personalize content suggestions such as what to read, watch, listen to, or purchase next. These systems use various inputs, including user behavior, preferences, and contextual data, to rank and recommend relevant items.</p>
+
+<h2>Building a Recommender System</h2>
+<p>Key considerations in building a recommender system include collecting and utilizing relevant user data, evaluating the quality of recommendations, and developing ranking algorithms that effectively match users with appropriate content.</p>
+
+<!-- Notes on pages 226 to 250 -->
+
+<h2>Types of Recommender Systems</h2>
+<p>There are three main types of recommender systems:</p>
+<ul>
+    <li><strong>Collaborative Filtering:</strong> Recommends items based on user-item interaction history (e.g., matrix factorization).</li>
+    <li><strong>Content-Based Filtering:</strong> Recommends items similar to those the user has interacted with based on item features.</li>
+    <li><strong>Hybrid Systems:</strong> Combines collaborative filtering and content-based approaches to improve recommendation accuracy.</li>
+</ul>
+<p><em>Source: Wu, Le, et al., IEEE Transactions on Knowledge and Data Engineering, 2022.</em></p>
+
+<h2>Deep Interaction Modeling in Recommender Systems</h2>
+<p>Deep learning models, such as neural collaborative filtering, have been applied to recommender systems to capture more complex user-item interactions. These models often rely on embeddings and neural network architectures to improve recommendation accuracy.</p>
+<p><em>Source: He, Xiangnan, et al., WWW 2017.</em></p>
+
+<h2>Industrial-Level Recommender Systems</h2>
+<p>Recommender systems at an industrial scale require open benchmarking frameworks to ensure fairness and accuracy in performance comparison. Researchers emphasize the need for open datasets and transparent benchmarking tools to improve industrial recommender systems.</p>
+<p><em>Source: Zhu, Jieming, et al., SIGIR 2022.</em></p>
+
+<h2>Foundation Models and Recommender Systems</h2>
+<p>Foundation models, which are large-scale models trained on vast amounts of data, can be adapted to a wide range of downstream tasks, including recommendation. These models are characterized by their ability to scale and their versatility across different applications.</p>
+<p><em>Source: Stanford University, HAI.</em></p>
+
+<h2>Transformer-based Models in Recommendation</h2>
+<p>Transformer architectures, particularly those incorporating self-attention mechanisms, are increasingly being used in recommender systems. Examples include BERT4Rec, which uses masked item prediction to train recommendation models similar to BERT's approach in NLP.</p>
+<p><em>Source: Sun, Fei, et al., CIKM 2019.</em></p>
+
+<h2>LLMs in Recommender Systems</h2>
+<p>Large language models (LLMs) are being explored for use in recommender systems, with applications in sequential recommendations, rating predictions, and review summarization. LLMs are also being used to encode natural language descriptions of items to improve recommendation accuracy.</p>
+<p><em>Source: Geng Shijie et al., RecSys 2022.</em></p>
+
+<h2>Fine-Tuning Large Language Models for Recommendation</h2>
+<p>In-context learning, while useful, is often insufficient for complex recommendation tasks. Fine-tuning LLMs is necessary to align them with specific recommendation goals. Techniques such as pointwise, pairwise, and listwise tuning are commonly used to improve recommendation performance.</p>
+<p><em>Source: Bao et al., RecSys 2023.</em></p>
+
+<h2>LLM-based Agents for Recommendation</h2>
+<p>LLM-powered agents can simulate user behavior for real-world recommendations. These agents leverage the reasoning, reflection, and planning capabilities of LLMs to make more intelligent recommendations. Collaboration among multiple agents is also being explored to improve recommendation systems.</p>
+<p><em>Source: Wang et al., arXiv 2023.</em></p>
+
+<h2>Software Engineering and the Software Life Cycle</h2>
+<p>The second domain in domain-specific data analytics is Software Engineering. The software life cycle includes key phases such as requirement gathering, feasibility studies, system analysis, software design, and development. Effective data analytics in software engineering helps optimize each phase of the software life cycle.</p>
+
+<!-- End of notes for pages 226 to 250 -->
+
+<!-- Notes on pages 251 to 259 -->
+
+<h2>Software Engineering and the Software Life Cycle</h2>
+<p>The software life cycle is a structured process that includes several key phases to ensure that software meets requirements and functions correctly. The primary stages are:</p>
+<ul>
+    <li><strong>Coding:</strong> Writing code that meets specified requirements, reusing code when possible, selecting APIs, and conducting unit testing.</li>
+    <li><strong>Testing:</strong> Various forms of testing, including unit tests, integration tests, and load tests, ensure that the software functions as expected.</li>
+    <li><strong>Release:</strong> Once the software passes testing, it is released into the production environment for user operations.</li>
+    <li><strong>Maintenance:</strong> Fixing bugs reported by users and ensuring ongoing operational stability of the software.</li>
+</ul>
+
+<h2>What is Software Engineering?</h2>
+<p>Software Engineering is a discipline aimed at producing software that:</p>
+<ul>
+    <li>Meets the client’s needs (Software Requirement).</li>
+    <li>Is fault-free (Software Quality Assurance).</li>
+    <li>Is delivered on time and within budget (Software Release Management/Project Management).</li>
+    <li>Is easy to modify (Software Maintenance and Evolution).</li>
+</ul>
+
+<h2>Types of Data-Driven Software Engineering Research</h2>
+<p>Software engineering research can be classified into three major types:</p>
+<ul>
+    <li><strong>Empirical Studies:</strong> Focuses on mining insightful facts, such as how developers use specific programming constructs.</li>
+    <li><strong>Recommendation Systems:</strong> Recommends practices or tools, such as recommending mocking decisions for unit tests.</li>
+    <li><strong>Automated Software Development Tools:</strong> Automation tools like Audee, which provides automated testing for deep learning frameworks.</li>
+</ul>
+
+<h2>Mining Software Repositories</h2>
+<p>Mining software repositories (MSR) involves extracting and analyzing data from software repositories to understand development patterns and improve software engineering practices. It focuses on both upstream and downstream data sources:</p>
+<ul>
+    <li><strong>Upstream:</strong> Analyzing source code, test cases, and other development artifacts, including code clones, changes, and issues such as crash reports.</li>
+    <li><strong>Downstream:</strong> Analyzing socio-technical and human factors related to software development, such as the behavior of developers and contributors.</li>
+</ul>
+
+<h2>MSR Methodology</h2>
+<p>The methodology for mining software repositories involves the following steps:</p>
+<ul>
+    <li><strong>Formulating a research goal:</strong> Clearly define the focus of the study (e.g., identifying common bugs or understanding developer behavior).</li>
+    <li><strong>Analyzing experimental objects:</strong> This can include repository data, such as source code or GitHub issues.</li>
+    <li><strong>Focusing on quality:</strong> Emphasize specific aspects of quality, such as functional suitability or performance.</li>
+    <li><strong>Considering the audience:</strong> Tailor the study for the intended readers, such as developers or researchers.</li>
+    <li><strong>Contextual analysis:</strong> Consider the context of the study, such as the specific software ecosystem being analyzed (e.g., Apache or Android).</li>
+</ul>
+
+<!-- End of notes for pages 251 to 259 -->
+
+
+
+
+
+</body>
+
+</html>
