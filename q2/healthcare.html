@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <title>Healthcare</title>
+</head>
+<body>
+    <h1 class="first-h1">Topic 1: Data in Healthcare</h1>
+
+<h2>Types of Data</h2>
+<ul>
+  <li>Demographics
+    <ul>
+      <li>Includes age, sex, socio-economic status, insurance type, language, religion, living situation, family structure, location, and occupation.</li>
+    </ul>
+  </li>
+  <li>Continuous Monitoring Data
+    <ul>
+      <li>Vital signs like heart rate, respiration rate, body temperature, and more.</li>
+    </ul>
+  </li>
+  <li>Medications
+    <ul>
+      <li>Details on prescribed, over-the-counter drugs, illegal substances, and alcohol consumption.</li>
+      <li>Uses coding systems, such as DIN (Canada), NDC (USA), and RxNorm for standardized drug names.</li>
+    </ul>
+  </li>
+  <li>Laboratory Results
+    <ul>
+      <li>Includes blood, urine, and other test results coded by LOINC.</li>
+    </ul>
+  </li>
+  <li>Clinical Notes
+    <ul>
+      <li>Notes from various healthcare providers, including doctors, nurses, and specialists.</li>
+      <li>Encompasses discharge summaries, radiology reports, and more.</li>
+    </ul>
+  </li>
+  <li>Medical Images
+    <ul>
+      <li>Includes X-rays, ultrasounds, CT scans, MRIs, and other imaging techniques.</li>
+    </ul>
+  </li>
+  <li>Other Medical Measurements
+    <ul>
+      <li>Additional data like EEG and ECG readings.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Stakeholders in Healthcare</h2>
+<ul>
+  <li>Patients
+    <ul>
+      <li>Primary recipients of healthcare, with needs focused on access to and quality of care.</li>
+    </ul>
+  </li>
+  <li>Providers
+    <ul>
+      <li>Healthcare professionals and institutions delivering care.</li>
+      <li>Includes hospitals, clinics, and private practitioners.</li>
+    </ul>
+  </li>
+  <li>Payers
+    <ul>
+      <li>Entities responsible for financing healthcare services, such as insurance companies and government programs.</li>
+    </ul>
+  </li>
+  <li>Policymakers
+    <ul>
+      <li>Regulatory bodies and government entities setting healthcare policies.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Electronic Health Records (EHR)</h2>
+<ul>
+  <li>Digital version of patients' paper charts.</li>
+  <li>Includes longitudinal records from healthcare providers across different encounters.</li>
+  <li>Advantages:
+    <ul>
+      <li>Improved accessibility and efficiency in managing patient data.</li>
+      <li>Supports continuity of care and facilitates healthcare analytics.</li>
+    </ul>
+  </li>
+  <li>Challenges:
+    <ul>
+      <li>Pre-populated fields may contain outdated information.</li>
+      <li>Data inconsistencies and potential inaccuracies in clinical documentation.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1>Topic 2: Methodology in Mining Healthcare Data</h1>
+
+<h2>Mining Structured Data</h2>
+<ul>
+  <li>Data Types: Structured data includes organized information like demographics, lab results, and diagnoses.</li>
+  <li>Approach:
+    <ul>
+      <li>Feature extraction techniques to convert structured data into usable formats for analysis.</li>
+      <li>Applying machine learning models for tasks like phenotyping and risk prediction.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Mining Unstructured Data</h2>
+<ul>
+  <li>Data Types: Unstructured data includes clinical notes, imaging reports, and other free-text formats.</li>
+  <li>Approach:
+    <ul>
+      <li>Natural Language Processing (NLP) techniques to interpret and analyze text data.</li>
+      <li>Image processing and computer vision for medical image analysis.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Data Modalities in EHR Systems</h2>
+<ul>
+  <li>Combining Multiple Data Types:
+    <ul>
+      <li>Structured Data: Demographics, lab results, medication details.</li>
+      <li>Unstructured Data: Clinical notes, images, audio recordings.</li>
+    </ul>
+  </li>
+  <li>Challenges:
+    <ul>
+      <li>Integrating heterogeneous data from various sources and formats.</li>
+      <li>Ensuring data compatibility across systems for effective analysis.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Advances in Data Mining Techniques</h2>
+<ul>
+  <li>Application of Large Language Models (LLMs) in healthcare.
+    <ul>
+      <li>LLMs facilitate text summarization, medical report generation, and classification of healthcare data.</li>
+      <li>Examples include Microsoft’s Precision Health, MIT's CASTLE Lab research on clinical data, and advancements in understanding clinical text.</li>
+    </ul>
+  </li>
+  <li>Integration of various data mining frameworks and tools specialized for healthcare data.</li>
+</ul>
+
+
+
+<!-- llm in healthcare -->
+<h1>Topic 3: LLM in Healthcare</h1>
+
+<h2>Applications of LLMs in Healthcare</h2>
+<ul>
+  <li>Summarization
+    <ul>
+      <li>Summarizes doctor-patient dialogues for easy reference.</li>
+      <li>Generates concise visit summaries from patient notes.</li>
+    </ul>
+  </li>
+  <li>Entity Recognition
+    <ul>
+      <li>Extracts Protected Health Information (PHI) from unstructured patient notes.</li>
+      <li>Identifies key medical terms and entities for data analysis.</li>
+    </ul>
+  </li>
+  <li>Text Classification
+    <ul>
+      <li>Classifies clinical documents like PubMed abstracts by type and relevance.</li>
+      <li>Determines diagnoses or document categories based on text data.</li>
+    </ul>
+  </li>
+  <li>Question Answering
+    <ul>
+      <li>Supports medical queries with specific answers based on clinical information.</li>
+      <li>Facilitates patient and professional inquiries on disease symptoms and treatment options.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Specialist Models for Healthcare</h2>
+<ul>
+  <li>Customized LLM models for healthcare:
+    <ul>
+      <li>Summarization, Entity Recognition, Relation Extraction, Text Classification, and Question Answering models tailored for clinical data.</li>
+    </ul>
+  </li>
+  <li>Examples of Biomedical LLMs:
+    <ul>
+      <li>BioGPT, PubMedBERT, ClinicalBERT, Med-PaLM, and SciBERT, which are pre-trained on medical and scientific literature for improved domain-specific understanding.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>Challenges and Bias in LLM Applications</h2>
+<ul>
+  <li>Bias and Fairness
+    <ul>
+      <li>LLMs can generate biased results based on demographic or training set limitations.</li>
+      <li>Important to evaluate LLM output to ensure it does not perpetuate healthcare disparities.</li>
+    </ul>
+  </li>
+  <li>Data Privacy
+    <ul>
+      <li>LLMs handling patient data must comply with healthcare privacy standards like HIPAA.</li>
+      <li>Ensuring secure handling of Protected Health Information (PHI) is essential.</li>
+    </ul>
+  </li>
+</ul>
+
+
+
+</body>
+</html>
