@@ -1,229 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../styles.css">
-    <title>Graph Mining</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../styles.css">
+  <title>Graph Mining</title>
 </head>
+
 <body>
-    <button onclick="window.location.href='../quiz2.html'">Back</button>
-    <h1 class="first-h1">Introduction to Graph Mining</h1>
+  <button onclick="window.location.href='../quiz2.html'">Back</button>
+  <h1 class="first-h1">Introduction to Graph Mining</h1>
 
-<h2>Definition of Graphs</h2>
+  <h2>Definition of Graphs</h2>
+  <ul>
+    <li>A graph is a set of objects (nodes or vertices) where certain pairs of objects are connected by edges.</li>
+    <li>Used to model complex systems and relationships in various domains.</li>
+  </ul>
+
+  <h2>Types of Graphs</h2>
+  <ul>
+    <li>Directed Graphs
+      <ul>
+        <li>Edges have a direction, representing a one-way relationship between nodes.</li>
+      </ul>
+    </li>
+    <li>Undirected Graphs
+      <ul>
+        <li>Edges have no direction, representing mutual relationships between nodes.</li>
+      </ul>
+    </li>
+    <li>Weighted Graphs
+      <ul>
+        <li>Edges have weights, indicating the strength or cost of the connection between nodes.</li>
+      </ul>
+    </li>
+    <li>Unweighted Graphs
+      <ul>
+        <li>Edges have no weights; connections are treated as equally significant.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Applications of Graph Data</h2>
+  <ul>
+    <li>Social Networks
+      <ul>
+        <li>Modeling relationships and interactions between people, such as on social media platforms.</li>
+      </ul>
+    </li>
+    <li>Knowledge Graphs
+      <ul>
+        <li>Storing structured information where entities are nodes and relationships are edges.</li>
+      </ul>
+    </li>
+    <li>Recommendation Systems
+      <ul>
+        <li>Utilizing graphs to recommend items by analyzing user-item relationships.</li>
+      </ul>
+    </li>
+    <li>Biological Networks
+      <ul>
+        <li>Modeling relationships between biological entities, such as genes or proteins.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h1>Graph Mining Techniques</h1>
+
+  <h2>Static Structural Patterns</h2>
+  <ul>
+    <li>Understanding the structure of real-world graphs at the node, edge, and graph levels.</li>
+    <li>Key Techniques:
+      <ul>
+        <li>Centrality Metrics: Measure the importance of nodes within a network (e.g., degree centrality, betweenness
+          centrality).</li>
+        <li>Community Detection: Identifies clusters or groups within the network.</li>
+        <li>Graph Neural Networks (GNNs): Machine learning models designed to operate on graph data.</li>
+      </ul>
+    </li>
+  </ul>
+<!-- 
+  <h2>Dynamic Structural Patterns</h2>
+  <ul>
+    <li>Analyzing how graphs evolve over time at different levels (node, edge, graph).</li>
+    <li>Applications:
+      <ul>
+        <li>Tracking changes in social networks over time.</li>
+        <li>Identifying trends in citation networks or collaboration networks.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>Graph Generation</h2>
+  <ul>
+    <li>Creating synthetic graphs to simulate real-world networks or predict future changes.</li>
+    <li>Approaches:
+      <ul>
+        <li>Full Graph Generation: Generate an entire graph structure from scratch.</li>
+        <li>Subgraph Generation: Generate parts of a graph, used in applications like link prediction.</li>
+      </ul>
+    </li>
+  </ul> -->
+
+  <h1>Static Structural Graph Mining</h1>
+  <p>
+    <strong>Static Structural Patterns</strong> in graph mining analyze fixed features of graphs, so constant variables.
+    This provides insights into node relationships and network organization. Key methods include centrality metrics,
+    which identify influential nodes, and community detection, which groups related nodes. Static analysis often uses
+    Graph Neural Networks (GNNs) to explore these patterns for applications such as social network analysis and
+    recommendation systems.
+  </p>
+
+
+
+
+  <h2>Centrality Metrics</h2>
+  <ul>
+    <li>Measures to determine the importance or influence of nodes in a network.</li>
+    <li>Common Types:
+      <ul>
+        <li>Degree Centrality: Counts the number of direct connections a node has.</li>
+        <li>Betweenness Centrality: Measures the number of times a node lies on the shortest path between other nodes.
+        </li>
+        <li>Closeness Centrality: Indicates how close a node is to all other nodes in the graph.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Degree Centrality:</h3>
+  <p><strong>Main Idea:</strong>Degree centrality assigns an importance score based on the number of links held by each
+    node. </p>
+  <p> For a given node, the degree centrality is the number of edges it has divided by the number of nodes there are in
+    the graph.</p>
+
+  <p><strong>When To Use:</strong><br>This is good for finding well connected or popular people, people who hold the
+    most information, etc.</p>
+  <p><strong>Cons:</strong><br>The main con is that it doesn't factor in "distance" or weight of the edges, which is why
+    we might use <strong><em>Betweenness Centrality</em></strong></p>
+
+
+  <h3>Betweenness Centrality</h3>
+  <p>This calculates the number of pairs of nodes that exist, where the shortest path between them includes a node. For
+    instance, when looking at the shortest path between two places in Kingston, it's highly likely the shortest path
+    (time wise) includes the Downtown Transfer Point.</p>
+  <p>It's used to find individuals who <strong>influence the flow</strong> around the system.</p>
+
+
+
+  <h2>How to Measure a Graph (Network)</h2>
+  <p>To measure graphs, we have a number of options.</p>
+  <ol>
+    <li>Degree Distribution</li>
+    <li>Path Length</li>
+    <li>Clustering Coefficient: C</li>
+    <li>Connected Components: s</li>
+  </ol>
+
+  <h2>Degree Distribution</h2>
+  <p>This is the probability that a <strong>randomly</strong> chose node has a degree (number of edges). What is the likelihood that if I grab a random person on LinkedIn, they have exactly 17 connections?</p>
+  
+
+
+  <h2>Path Length in Graphs</h2>
+
+  <h3>Diameter</h3>
+  <p>
+  The <strong>diameter</strong> of a graph is the maximum shortest path distance between any pair of nodes in the graph. In other words, it represents the greatest distance you would have to travel between any two nodes using the shortest possible route. The diameter gives an idea of the "size" or "spread" of the graph in terms of connectivity. A smaller diameter generally suggests a more compact or closely connected network.
+  </p>
+  
+  <h3>Average Path Length</h3>
+  <p>
+  The <strong>average path length</strong> is the average of the shortest path distances between all possible pairs of nodes in a connected graph. It is calculated using the formula:
+  </p>
+  <pre><code>&#x1F589; h̄ = (1 / 2E<sub>max</sub>) Σ<sub>i,j ≠ i</sub> h<sub>ij</sub></code></pre>
+  <p>
+  Where:
+  <ul>
+    <li><code>h<sub>ij</sub></code> is the shortest path distance between nodes <em>i</em> and <em>j</em>.</li>
+    <li><code>E<sub>max</sub></code> represents the maximum number of edges or pairs in the network, calculated as <code>n(n-1)/2</code> where <code>n</code> is the total number of nodes.</li>
+  </ul>
+  </p>
+  <p>
+  Average path length provides a measure of the "closeness" of nodes within the network. A smaller average path length suggests nodes are more tightly interconnected, allowing for quicker reachability on average.
+  </p>
+
+  <h2>Clustering Coefficient</h2>
+
+<p>
+The <strong>clustering coefficient</strong> is a measure of how connected a node's neighbors are to each other in an undirected graph. It indicates the likelihood that two neighbors of a given node are also connected, forming a triangle.
+</p>
+
+<h3>Node Clustering Coefficient</h3>
+
+
+<h3>Understanding the Difference between <em>e<sub>i</sub></em> and <em>k<sub>i</sub></em></h3>
+<p>
+In the clustering coefficient formula:
+</p>
 <ul>
-  <li>A graph is a set of objects (nodes or vertices) where certain pairs of objects are connected by edges.</li>
-  <li>Used to model complex systems and relationships in various domains.</li>
+  <li><strong><em>e<sub>i</sub></em></strong> refers to the <strong>number of edges between the neighbors of node <em>i</em></strong>. This measures how interconnected node <em>i</em>’s neighbors are with each other. A higher <em>e<sub>i</sub></em> means more of node <em>i</em>’s neighbors are connected, forming a cluster.</li>
+  <li><strong><em>k<sub>i</sub></em></strong> is the <strong>degree of node <em>i</em></strong>, which represents the number of direct connections or neighbors that node <em>i</em> has.</li>
 </ul>
+<p>
+For example, if node <em>i</em> has <em>k<sub>i</sub> = 3</em>, it means node <em>i</em> is connected to 3 other nodes. If all 3 neighbors are connected to each other, <em>e<sub>i</sub></em> would be 3, forming a tightly connected triangle. If none of these neighbors are connected, then <em>e<sub>i</sub></em> would be 0.
+</p>
 
-<h2>Types of Graphs</h2>
+
+<p>
+For a node <em>i</em> with degree <em>k<sub>i</sub></em>, the clustering coefficient <em>C<sub>i</sub></em> is calculated as:
+</p>
+<pre><code>C<sub>i</sub> = (2 * e<sub>i</sub>) / (k<sub>i</sub> * (k<sub>i</sub> - 1))</code></pre>
+<p>
+where:
 <ul>
-  <li>Directed Graphs
-    <ul>
-      <li>Edges have a direction, representing a one-way relationship between nodes.</li>
-    </ul>
-  </li>
-  <li>Undirected Graphs
-    <ul>
-      <li>Edges have no direction, representing mutual relationships between nodes.</li>
-    </ul>
-  </li>
-  <li>Weighted Graphs
-    <ul>
-      <li>Edges have weights, indicating the strength or cost of the connection between nodes.</li>
-    </ul>
-  </li>
-  <li>Unweighted Graphs
-    <ul>
-      <li>Edges have no weights; connections are treated as equally significant.</li>
-    </ul>
-  </li>
+  <li><code>e<sub>i</sub></code> is the number of edges between the neighbors of node <em>i</em>.</li>
+  <li><code>k<sub>i</sub></code> is the degree of node <em>i</em> (the number of connections it has).</li>
 </ul>
-
-<h2>Applications of Graph Data</h2>
+</p>
+<p>
+In the diagram:
 <ul>
-  <li>Social Networks
-    <ul>
-      <li>Modeling relationships and interactions between people, such as on social media platforms.</li>
-    </ul>
-  </li>
-  <li>Knowledge Graphs
-    <ul>
-      <li>Storing structured information where entities are nodes and relationships are edges.</li>
-    </ul>
-  </li>
-  <li>Recommendation Systems
-    <ul>
-      <li>Utilizing graphs to recommend items by analyzing user-item relationships.</li>
-    </ul>
-  </li>
-  <li>Biological Networks
-    <ul>
-      <li>Modeling relationships between biological entities, such as genes or proteins.</li>
-    </ul>
-  </li>
+  <li>If all neighbors of node <em>i</em> are interconnected, then <code>C<sub>i</sub> = 1</code>.</li>
+  <li>If half of the possible connections exist between neighbors, then <code>C<sub>i</sub> = 0.5</code>.</li>
+  <li>If none of the neighbors are connected, then <code>C<sub>i</sub> = 0</code>.</li>
 </ul>
+</p>
 
-<h1>Graph Mining Techniques</h1>
+<h3>Average Clustering Coefficient</h3>
+<p>
+The <strong>average clustering coefficient</strong> of a graph is the mean of the clustering coefficients of all nodes, calculated as:
+</p>
+<pre><code>C = (1 / N) * Σ C<sub>i</sub></code></pre>
+<p>
+where <code>N</code> is the total number of nodes in the graph, and <code>C<sub>i</sub></code> is the clustering coefficient of each node <em>i</em>.
+</p>
+<p>
+This metric provides insight into the overall "cliquishness" of a network. A high average clustering coefficient suggests a network with many tightly knit groups or communities.
+</p>
 
-<h2>Static Structural Patterns</h2>
-<ul>
-  <li>Understanding the structure of real-world graphs at the node, edge, and graph levels.</li>
-  <li>Key Techniques:
-    <ul>
-      <li>Centrality Metrics: Measure the importance of nodes within a network (e.g., degree centrality, betweenness centrality).</li>
-      <li>Community Detection: Identifies clusters or groups within the network.</li>
-      <li>Graph Neural Networks (GNNs): Machine learning models designed to operate on graph data.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2>Dynamic Structural Patterns</h2>
-<ul>
-  <li>Analyzing how graphs evolve over time at different levels (node, edge, graph).</li>
-  <li>Applications:
-    <ul>
-      <li>Tracking changes in social networks over time.</li>
-      <li>Identifying trends in citation networks or collaboration networks.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2>Graph Generation</h2>
-<ul>
-  <li>Creating synthetic graphs to simulate real-world networks or predict future changes.</li>
-  <li>Approaches:
-    <ul>
-      <li>Full Graph Generation: Generate an entire graph structure from scratch.</li>
-      <li>Subgraph Generation: Generate parts of a graph, used in applications like link prediction.</li>
-    </ul>
-  </li>
-</ul>
-
-<h1>Static Structural Graph Mining</h1>
-
-<h2>Centrality Metrics</h2>
-<ul>
-  <li>Measures to determine the importance or influence of nodes in a network.</li>
-  <li>Common Types:
-    <ul>
-      <li>Degree Centrality: Counts the number of direct connections a node has.</li>
-      <li>Betweenness Centrality: Measures the number of times a node lies on the shortest path between other nodes.</li>
-      <li>Closeness Centrality: Indicates how close a node is to all other nodes in the graph.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2>Community Detection</h2>
-<ul>
-  <li>Identifies clusters or communities within a network.</li>
-  <li>Techniques:
-    <ul>
-      <li>Modularity-Based Methods: Maximize the density of edges within communities and minimize edges between them.</li>
-      <li>Spectral Clustering: Uses eigenvalues of matrices associated with the graph to detect communities.</li>
-    </ul>
-  </li>
-</ul>
-
-<h2>Graph Neural Networks (GNNs)</h2>
-<ul>
-  <li>Machine learning models that operate on graph structures and leverage node connectivity information.</li>
-  <li>Applications:
-    <ul>
-      <li>Node Classification: Predict the category of individual nodes.</li>
-      <li>Link Prediction: Forecast the likelihood of edges between nodes.</li>
-      <li>Graph Classification: Classify entire graphs (e.g., for molecule analysis in bioinformatics).</li>
-    </ul>
-  </li>
-</ul>
+  
+<!-- 
+  <h2>Community Detection</h2>
+  <ul>
+    <li>Identifies clusters or communities within a network.</li>
+    <li>Techniques:
+      <ul>
+        <li>Modularity-Based Methods: Maximize the density of edges within communities and minimize edges between them.
+        </li>
+        <li>Spectral Clustering: Uses eigenvalues of matrices associated with the graph to detect communities.</li>
+      </ul>
+    </li>
+  </ul>
+<!--  -->
+  <!-- <h2>Graph Neural Networks (GNNs)</h2>
+  <ul>
+    <li>Machine learning models that operate on graph structures and leverage node connectivity information.</li>
+    <li>Applications:
+      <ul>
+        <li>Node Classification: Predict the category of individual nodes.</li>
+        <li>Link Prediction: Forecast the likelihood of edges between nodes.</li>
+        <li>Graph Classification: Classify entire graphs (e.g., for molecule analysis in bioinformatics).</li>
+      </ul>
+    </li>
+  </ul>  -->
 
 
-<h1>Dynamic Structural Graph Mining</h1>
+  <h2>Dynamic Structural Graph Mining</h2>
+  <p>
+    <strong>Dynamic Structural Patterns</strong> focus on changes within graphs over time, helping to understand
+    evolving relationships and trends. Techniques in dynamic analysis include temporal graph analysis, which tracks how
+    connections shift, and models like Temporal Graph Neural Networks (TGNNs) that capture time-sensitive interactions.
+    Dynamic pattern analysis is critical for applications like social network evolution and event detection.
+  </p>
 
-<h2>Temporal Graph Analysis</h2>
-<ul>
-  <li>Examines how graph structures change over time.</li>
-  <li>Applications:
-    <ul>
-      <li>Social Network Evolution: Tracking the formation and dissolution of connections in social networks.</li>
-      <li>Event Detection: Identifying significant changes in a graph that may indicate important events.</li>
-    </ul>
-  </li>
-</ul>
+  <!-- <h2>Temporal Graph Analysis</h2>
+  <ul>
+    <li>Examines how graph structures change over time.</li>
+    <li>Applications:
+      <ul>
+        <li>Social Network Evolution: Tracking the formation and dissolution of connections in social networks.</li>
+        <li>Event Detection: Identifying significant changes in a graph that may indicate important events.</li>
+      </ul>
+    </li>
+  </ul>
 
-<h2>Graph Evolution Patterns</h2>
-<ul>
-  <li>Studies recurring patterns in the way graphs grow and change.</li>
-  <li>Examples of Patterns:
-    <ul>
-      <li>Preferential Attachment: Nodes with high connectivity are more likely to form new connections.</li>
-      <li>Small-World Property: Graphs tend to have short paths between nodes despite high complexity.</li>
-    </ul>
-  </li>
-</ul>
+  <h2>Graph Evolution Patterns</h2>
+  <ul>
+    <li>Studies recurring patterns in the way graphs grow and change.</li>
+    <li>Examples of Patterns:
+      <ul>
+        <li>Preferential Attachment: Nodes with high connectivity are more likely to form new connections.</li>
+        <li>Small-World Property: Graphs tend to have short paths between nodes despite high complexity.</li>
+      </ul>
+    </li>
+  </ul>
 
-<h2>Dynamic Graph Models</h2>
-<ul>
-  <li>Models designed to represent and predict changes in graph structure over time.</li>
-  <li>Popular Models:
-    <ul>
-      <li>Stochastic Block Models (SBMs): Used for community detection and predicting dynamic changes in graphs.</li>
-      <li>Temporal Graph Neural Networks (TGNNs): Incorporate temporal aspects to make time-sensitive predictions on graph data.</li>
-    </ul>
-  </li>
-</ul>
+  <h2>Dynamic Graph Models</h2>
+  <ul>
+    <li>Models designed to represent and predict changes in graph structure over time.</li>
+    <li>Popular Models:
+      <ul>
+        <li>Stochastic Block Models (SBMs): Used for community detection and predicting dynamic changes in graphs.</li>
+        <li>Temporal Graph Neural Networks (TGNNs): Incorporate temporal aspects to make time-sensitive predictions on
+          graph data.</li>
+      </ul>
+    </li>
+  </ul>
 
-<h1>Graph Generation</h1>
+  <h1>Graph Generation</h1>
 
-<h2>Introduction to Graph Generation</h2>
-<ul>
-  <li>Graph generation involves creating synthetic graphs that simulate real-world networks.</li>
-  <li>Applications:
-    <ul>
-      <li>Testing algorithms on simulated data before real-world deployment.</li>
-      <li>Predicting future structures in dynamic networks.</li>
-    </ul>
-  </li>
-</ul>
+  <h2>Introduction to Graph Generation</h2>
+  <ul>
+    <li>Graph generation involves creating synthetic graphs that simulate real-world networks.</li>
+    <li>Applications:
+      <ul>
+        <li>Testing algorithms on simulated data before real-world deployment.</li>
+        <li>Predicting future structures in dynamic networks.</li>
+      </ul>
+    </li>
+  </ul>
 
-<h2>Types of Graph Generation</h2>
-<ul>
-  <li>Full Graph Generation
-    <ul>
-      <li>Generates an entire graph structure from scratch.</li>
-      <li>Used to model complex networks, such as social or biological networks.</li>
-    </ul>
-  </li>
-  <li>Subgraph Generation
-    <ul>
-      <li>Generates specific parts of a graph, often used for focused analysis or link prediction.</li>
-      <li>Helpful in studying local structures within large graphs.</li>
-    </ul>
-  </li>
-</ul>
+  <h2>Types of Graph Generation</h2>
+  <ul>
+    <li>Full Graph Generation
+      <ul>
+        <li>Generates an entire graph structure from scratch.</li>
+        <li>Used to model complex networks, such as social or biological networks.</li>
+      </ul>
+    </li>
+    <li>Subgraph Generation
+      <ul>
+        <li>Generates specific parts of a graph, often used for focused analysis or link prediction.</li>
+        <li>Helpful in studying local structures within large graphs.</li>
+      </ul>
+    </li>
+  </ul>
 
-<h2>Graph Generation Techniques</h2>
-<ul>
-  <li>Random Graph Models
-    <ul>
-      <li>Generate graphs by randomly connecting nodes, e.g., Erdős-Rényi model.</li>
-      <li>Useful for studying properties like connectivity and network resilience.</li>
-    </ul>
-  </li>
-  <li>Preferential Attachment Models
-    <ul>
-      <li>Simulate the "rich-get-richer" effect, where high-degree nodes are more likely to gain new connections.</li>
-      <li>Example: Barabási-Albert model, used to mimic social networks and the internet.</li>
-    </ul>
-  </li>
-  <li>Stochastic Block Models
-    <ul>
-      <li>Divide nodes into blocks or communities with specified probabilities for connections within or between blocks.</li>
-      <li>Commonly used for community detection in social and biological networks.</li>
-    </ul>
-  </li>
-</ul>
+  <h2>Graph Generation Techniques</h2>
+  <ul>
+    <li>Random Graph Models
+      <ul>
+        <li>Generate graphs by randomly connecting nodes, e.g., Erdős-Rényi model.</li>
+        <li>Useful for studying properties like connectivity and network resilience.</li>
+      </ul>
+    </li>
+    <li>Preferential Attachment Models
+      <ul>
+        <li>Simulate the "rich-get-richer" effect, where high-degree nodes are more likely to gain new connections.</li>
+        <li>Example: Barabási-Albert model, used to mimic social networks and the internet.</li>
+      </ul>
+    </li>
+    <li>Stochastic Block Models
+      <ul>
+        <li>Divide nodes into blocks or communities with specified probabilities for connections within or between
+          blocks.</li>
+        <li>Commonly used for community detection in social and biological networks.</li>
+      </ul>
+    </li>
+  </ul> -->
 
-    
+
 </body>
+
 </html>
