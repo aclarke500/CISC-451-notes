@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <title>Continual Machine Learning</title>
+</head>
+<body>
+    <!-- Topic 7: Continual Machine Learning -->
+<h1>Topic 7: Continual Machine Learning</h1>
+
+<h2>Part 1: Fundamentals of Continual Learning</h2>
+<h3>Definition</h3>
+<p>Continual Machine Learning (CL) refers to the ability of a model to learn new tasks incrementally while retaining knowledge of previously learned tasks. This is in contrast to traditional machine learning, where models are trained in isolation for a single, fixed task.</p>
+<p>Key principles of CL include:</p>
+<ul>
+    <li><strong>Incremental Learning:</strong> Continuously updating the model with new data or tasks.</li>
+    <li><strong>Knowledge Retention:</strong> Avoiding catastrophic forgetting of previously learned information.</li>
+    <li><strong>Adaptability:</strong> Incorporating new information while maintaining stability.</li>
+</ul>
+
+<h3>Challenges in Traditional ML</h3>
+<ul>
+    <li><strong>Closed-World Assumption:</strong> Traditional models assume the test distribution matches the training distribution, making them ineffective in dynamic environments.</li>
+    <li><strong>No Knowledge Accumulation:</strong> Classic models cannot leverage previously learned tasks for new challenges.</li>
+    <li><strong>Fixed Models Post-Deployment:</strong> Traditional models do not adapt to new data after deployment.</li>
+</ul>
+
+<h3>The Stability-Plasticity Dilemma</h3>
+<p>The dilemma arises because:</p>
+<ul>
+    <li><strong>Stability:</strong> Retaining learned knowledge requires preventing significant model updates.</li>
+    <li><strong>Plasticity:</strong> Learning new tasks demands adaptability and flexibility.</li>
+</ul>
+<p>Balancing these opposing needs is a core challenge in continual learning.</p>
+
+<h2>Part 2: Traditional Approaches to Continual Learning</h2>
+<h3>Learning Scenarios</h3>
+<ul>
+    <li><strong>Task-Incremental Learning (TIL):</strong> Learning a sequence of tasks where task labels are available at test time.</li>
+    <li><strong>Domain-Incremental Learning (DIL):</strong> Solving the same task across different contexts or domains.</li>
+    <li><strong>Class-Incremental Learning (CIL):</strong> Incrementally learning new classes while retaining knowledge of previously learned ones.</li>
+</ul>
+
+<h3>Continual Learning Strategies</h3>
+<ul>
+    <li><strong>Parameter Regularization:</strong> Penalizes significant changes to important model parameters using methods like:
+        <ul>
+            <li><strong>Elastic Weight Consolidation (EWC):</strong> Prevents large updates to parameters critical for prior tasks.</li>
+            <li><strong>Synaptic Intelligence (SI):</strong> Measures parameter importance based on contribution to previous tasks.</li>
+        </ul>
+    </li>
+    <li><strong>Replay Methods:</strong> Combines new data with a subset of previous task data for training. Examples include:
+        <ul>
+            <li><strong>Experience Replay (ER):</strong> Stores and reuses a small memory buffer of past samples.</li>
+            <li><strong>Generative Replay:</strong> Uses a generative model to synthesize samples from past tasks.</li>
+        </ul>
+    </li>
+    <li><strong>Functional Regularization:</strong> Encourages consistency in input-output mappings over time, using approaches like:
+        <ul>
+            <li><strong>Learning without Forgetting (LwF):</strong> Maintains performance on earlier tasks without explicitly storing their data.</li>
+            <li><strong>Functional Regularization of Memorable Past (FROMP):</strong> Regularizes function outputs based on selected anchor points.</li>
+        </ul>
+    </li>
+    <li><strong>Context-Specific Components:</strong> Introduces task-specific modules or dynamic architectures to isolate knowledge for each task.</li>
+</ul>
+
+<h3>Evaluation Metrics</h3>
+<p>Performance is assessed using metrics like:</p>
+<ul>
+    <li><strong>Accuracy:</strong> How well the model performs across all tasks.</li>
+    <li><strong>Forgetting:</strong> The drop in performance on previous tasks after learning new ones.</li>
+    <li><strong>Forward Transfer:</strong> How well previous knowledge aids in learning new tasks.</li>
+</ul>
+
+<h2>Part 3: Continual Learning in the LLM Era</h2>
+<h3>Adapting Continual Learning to LLMs</h3>
+<p>With the rise of large language models (LLMs), continual learning has become critical for applications involving:
+</p>
+<ul>
+    <li><strong>Dynamic Knowledge Updating:</strong> Keeping LLMs updated with evolving knowledge without re-training from scratch.</li>
+    <li><strong>Personalization:</strong> Adapting LLMs to specific users or tasks while retaining general capabilities.</li>
+    <li><strong>Open-World Adaptation:</strong> Handling tasks and queries outside the original training scope.</li>
+</ul>
+
+<h3>Applications of Continual Learning</h3>
+<ul>
+    <li><strong>Robotics:</strong> Adapting to new environments and tasks incrementally.</li>
+    <li><strong>Autonomous Vehicles:</strong> Learning to handle new driving scenarios dynamically.</li>
+    <li><strong>Conversational AI:</strong> Tailoring responses to individual users over time.</li>
+    <li><strong>Healthcare:</strong> Incorporating new patient data and medical advancements into models.</li>
+</ul>
+<p>Continual learning enables AI systems to function in dynamic and open-ended environments, bridging the gap between static models and real-world adaptability.</p>
+
+</body>
+</html>

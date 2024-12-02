@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <title>Robust Machine Learning</title>
+</head>
+<body>
+    <!-- Topic 6: Robust Machine Learning -->
+<h1>Topic 6: Robust Machine Learning</h1>
+
+<h2>Part 1: Understanding Robustness</h2>
+<h3>Definition</h3>
+<p>Robustness in machine learning refers to a model's ability to maintain high performance and reliability under non-ideal conditions, such as noisy, adversarially perturbed, or out-of-distribution inputs.</p>
+<p>Two primary branches of robustness:</p>
+<ul>
+    <li><strong>Adversarial Robustness:</strong> Defending against deliberately crafted adversarial examples designed to mislead the model.</li>
+    <li><strong>Natural Robustness:</strong> Handling real-world variations such as noise, occlusions, or distribution shifts.</li>
+</ul>
+
+<h3>Key Concerns</h3>
+<ul>
+    <li><strong>Adversarial Attacks:</strong> Inputs are perturbed slightly to manipulate predictions (e.g., adding imperceptible noise to an image).</li>
+    <li><strong>Distribution Shift:</strong> Differences between training and test data distributions lead to degraded model performance.</li>
+    <li><strong>AI Safety Issues:</strong> Vulnerabilities in large models can lead to unintended behaviors, such as hallucinations in generative models.</li>
+</ul>
+
+<h2>Part 2: Methods for Improving Robustness</h2>
+<h3>Adversarial Training</h3>
+<p>Adversarial training is one of the most effective defenses against adversarial attacks. It involves training the model on adversarial examples generated during training to make it robust against such perturbations.</p>
+<ul>
+    <li><strong>Fast Gradient Sign Method (FGSM):</strong> A quick method to generate adversarial examples by adding perturbations proportional to the gradient of the loss function.</li>
+    <li><strong>Projected Gradient Descent (PGD):</strong> A more iterative and stronger attack used to generate adversarial examples for training.</li>
+</ul>
+
+<h3>Regularization Techniques</h3>
+<p>Regularization methods penalize model changes during training to improve stability and robustness:</p>
+<ul>
+    <li><strong>Weight Regularization:</strong> Penalizes large weight values to prevent overfitting to noisy or adversarial data.</li>
+    <li><strong>Spectral Normalization:</strong> Limits the Lipschitz constant of the model to ensure stability.</li>
+    <li><strong>Dropout:</strong> Randomly drops units during training to enhance generalization.</li>
+</ul>
+
+<h3>Real-World Corruptions</h3>
+<p>Improving robustness against natural perturbations involves augmenting training data and designing specialized architectures:</p>
+<ul>
+    <li><strong>Data Augmentation:</strong> Introduces real-world variations (e.g., blurring, cropping, or adding noise) during training.</li>
+    <li><strong>Robust Architectures:</strong> Networks designed with built-in resistance to noise or occlusions, such as Capsule Networks.</li>
+</ul>
+
+<h3>Defensive Techniques</h3>
+<p>Several strategies are used to detect and mitigate vulnerabilities:</p>
+<ul>
+    <li><strong>Detection Mechanisms:</strong> Identifying adversarial examples using anomaly detection or feature consistency checks.</li>
+    <li><strong>Randomized Smoothing:</strong> Adds random noise to inputs and averages predictions, making models robust to small perturbations.</li>
+    <li><strong>Certified Robustness:</strong> Guarantees robustness within a certain perturbation range using theoretical bounds.</li>
+</ul>
+
+<h2>Additional Notes</h2>
+<h3>Trade-Offs in Robustness</h3>
+<ul>
+    <li><strong>Accuracy vs. Robustness:</strong> Overly robust models may sacrifice performance on clean data.</li>
+    <li><strong>Robustness vs. Fairness:</strong> Ensuring robustness for all demographic groups can be challenging.</li>
+    <li><strong>Robustness vs. Explainability:</strong> Techniques like adversarial training can reduce the interpretability of models.</li>
+</ul>
+<p>Achieving a balance is critical for real-world applications of robust machine learning.</p>
+
+</body>
+</html>

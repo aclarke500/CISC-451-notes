@@ -10,13 +10,8 @@ body {
 /* Headings */
 
 h1{
-    margin-top: 5rem;
-}
+    
 
-.first-h1{
-    margin-top: auto;
-}
-h2 {
     color: #1DB954; /* Sleek green for dramatic headings */
     font-size: 2.2em;
     margin-bottom: 20px;
@@ -26,7 +21,14 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
     /* background-color: #aaa; */
+}
 
+.first-h1{
+    margin-top: auto;
+}
+h2 {
+   
+    margin-top: 5rem;
 }
 
 h3 {
